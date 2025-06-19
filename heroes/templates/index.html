@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Heroes</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Add a Superhero</h1>
+    <form action="/" method="post">
+        <input type="text" id="hero" name="hero" placeholder="Name" required>
+        <input type="text" id="mask" name="mask" placeholder="Super Hero Name" required>
+        <input type="submit" value="Add Hero" id="btn_add">
+    </form>
+
+    {% if heroes | length < 1 %}
+        <h3>No heroes registered yet.</h3>
+    {% else %}
+        <h2>Registered Heroes</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Supername</th>
+                <th>Function</th>
+            </tr>
+            {% for hero in heroes %}
+            <tr>
+                <td>{{ hero.names }}</td>
+                <td>{{ hero.super_hero_name }}</td>
+                <td>
+                     <a href="/update/{{ hero.id }}" class="button">Update</a>
+                    <a href="/delete/{{ hero.id }}" class="button">Delete</a>
+                    <a href="/powers/{{ hero.id }}" class="button">Powers</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Edit Hero</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Edit Hero Details</h1>
+    <form action="/update/{{ hero.id }}" method="post">
+        <input type="text" id="hero" name="hero"  value="{{ hero.names }}" required>
+        <input type="text" id="mask" name="mask"  value="{{ hero.super_hero_name }}" required>
+        <input type="submit" value="Edit" id="btn_edit">
+    </form>
+</div>
+{% endblock %}
