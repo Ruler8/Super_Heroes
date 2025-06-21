@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Assign Power</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Assign Power to Hero</h1>
+    <form action="/assign_power" method="post">
+        <label for="hero_id">Hero:</label>
+        <select name="hero_id" required>
+            {% for hero in heroes %}
+            <option value="{{ hero.id }}">{{ hero.super_hero_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="power_id">Power:</label>
+        <select name="power_id" required>
+            {% for power in powers %}
+            <option value="{{ power.id }}">{{ power.name }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="strength" placeholder="Strength (e.g., Strong)" required>
+        <input type="submit" value="Assign Power">
+        <a href="/" class="button">Back to Heroes</a>
+        <a href="/add_power" class="button">Power</a>
+    </form>
+
+    <h2>Registered Heroes</h2>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Name</th>
+            <th>Supername</th>
+            <th>Powers + Actions</th>
+        </tr>
+        {% for hero in heroes %}
+        <tr>
+            <td>{{ hero.names }}</td>
+            <td>{{ hero.super_hero_name }}</td>
+            <td>
+                {% for hp in hero.powers %}
+                    <div>
+                        {{ hp.power.name }} ({{ hp.strength }})
+                        <a href="/update_power/{{ hp.id }}">Edit</a> |
+                        <a href="/delete_power/{{ hp.id }}" onclick="return confirm('Are you sure you want to delete this power?')">Delete</a>
+                    </div>
+                {% else %}
+                    <em>No powers assigned</em>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    
+</div>
+{% endblock %}

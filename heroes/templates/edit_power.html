@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Edit Power</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Edit Power</h1>
+
+    <form action="/edit_power/{{ power.id }}" method="post">
+        <label for="power_name">New Power Name:</label><br>
+        <input type="text" id="power_name" name="power_name" value="{{ power.name }}" required><br><br>
+        <input type="submit" value="Save Changes">
+        <a href="/add_power" class="button">Cancel</a>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,66 +1,70 @@
-# Super_Heroes
+# 🦸‍♂️ Flask Hero Management App
 
-# Superhero Registration Flask App
-
-This is a simple Flask web application that allows users to register superheroes by entering a real name and a superhero name. The app supports adding, listing, and editing hero entries using an SQLite database via SQLAlchemy.
+This is a simple Flask application that allows you to manage superheroes, their powers, and the strength of their abilities. It uses **Flask**, **SQLAlchemy**, and **SQLite** to create and manage relational data between heroes and powers.
 
 ---
 
 ## Features
 
-- Add new heroes with real name and superhero alias
-- List all registered heroes in a table
-- Edit existing hero information
-- Styled with basic CSS (form, table, buttons)
-- Persistent storage using SQLite
+- Add and manage superheroes
+- Add and manage powers
+- Assign powers to heroes with strength levels
+- Edit or delete heroes, powers, and assignments
+- User-friendly web interface with structured forms and tables
+
+---
+
+## Tech Stack
+
+- **Backend**: Python, Flask, SQLAlchemy
+- **Database**: SQLite
+- **Frontend**: HTML (Jinja2 templating)
 
 ---
 
 ## Project Structure
-superhero-app/
+
+project/
+│
 ├── app.py # Main Flask application
-├── heroes.db # SQLite database (auto-created)
-├── static/
-│ └── styles.css # CSS styling for the app
+├── heroes.db # SQLite database (generated after first run)
 ├── templates/
-│ ├── base.html # Base layout template
-│ ├── index.html # Home page (add & view heroes)
-│ └── edit.html # Edit hero form
-└── README.md # This file
+│ ├── base.html # Common layout
+│ ├── index.html # Home page for managing heroes
+│ ├── add_power.html # Form to add new powers
+│ ├── assign_power.html # Form to assign powers to heroes
+│ ├── edit.html # Edit hero details
+│ ├── edit_power.html # Edit existing power
+│ ├── update_power.html # Edit strength/power assignment
+└── static/
+└── CSS files for styling
 
-## Create and activate a virtual environment
-python3 -m venv heroes
-source venv/bin/activate
 
-## Install required packages
+---
+
+## How to Use
+
+### 1. **Install Dependencies**
+
+Make sure you have Python 3 installed. Then install Flask and SQLAlchemy:
+
+```bash
 pip install flask flask_sqlalchemy
 
-## Running the App
+## Run the App
 python app.py
 
-## How It Works
-## Add a Hero
-On the home page:
-
-Fill in the hero's real name and superhero name.
-
-Click "Add Hero" to save it to the database.
-
-View & Edit Heroes
-Registered heroes appear in a table.
-
-Each hero has a "Powers" link (you can customize this).
-
-You can also navigate to /update/<hero_id> to edit hero details.
-
-## Styling
-Basic CSS is stored in static/styles.css and includes:
-
-Form styling
-
-Table layout
-
-Button-like anchor tags (a.button)
-
+## Routes Summary
+| Route                    | Method    | Description                    |
+| ------------------------ | --------- | ------------------------------ |
+| `/`                      | GET, POST | Home page. Add and view heroes |
+| `/delete/<int:id>`       | GET       | Delete a hero                  |
+| `/update/<int:id>`       | GET, POST | Edit hero name or supername    |
+| `/add_power`             | GET, POST | Add a new power                |
+| `/edit_power/<int:id>`   | GET, POST | Edit a power                   |
+| `/delete_power/<int:id>` | GET       | Delete a power                 |
+| `/assign_power`          | GET, POST | Assign a power to a hero       |
+| `/update_power/<int:id>` | GET, POST | Edit assigned power/strength   |
+| `/delete_power/<int:id>` | GET       | Remove a power assignment      |
 
 
